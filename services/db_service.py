@@ -16,3 +16,6 @@ def get_placements(year=None):
 
 def get_contact():
     return db.contacts.find_one({}, {"_id": 0})
+
+def get_db():
+    return db
