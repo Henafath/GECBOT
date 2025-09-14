@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GECT Chatbot</title>
+  <script>
+    async function sendMessage() {
+      const userMsg = document.getElementById("userInput").value;
+      const response = await fetch("/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: userMsg })
+      });
+      const data = await response.json();
+      document.getElementById("chatBox").innerHTML += "<p><b>You:</b> " + userMsg + "</p>";
+      document.getElementById("chatBox").innerHTML += "<p><b>Bot:</b> " + data.reply + "</p>";
+    }
+  </script>
+</head>
+<body>
+  <h2>Welcome to GECT Chatbot</h2>
+  <div id="chatBox" style="border:1px solid #ccc; padding:10px; height:200px; overflow-y:auto;"></div>
+  <input type="text" id="userInput" placeholder="Ask something..." />
+  <button onclick="sendMessage()">Send</button>
+</body>
+</html>

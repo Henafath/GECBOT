@@ -1,0 +1,364 @@
+[
+  {
+    "branch": "Computer Science and Engineering",
+    "engg/non-engg":"engineering",
+    "established":1984,
+  "hod": "HELEN K J",
+  "email": "helen@gectcr.ac.in",
+  "ug programs": 
+  [
+    {
+      "course":"B.Tech in Computer Science & Engineering",
+      "started":1984,
+      "intake":60
+    }
+  ],
+  "pg programs":[
+    {
+      "course":"M.Tech in Computer Science and Engineering",
+      "intake":18
+    }
+  ]
+  ,
+  "labs": ["System Software Lab", "Programming Lab", "UG Project Lab","Hardware Lab"],
+  "teaching faculty": 16,
+  "technical staff":5,
+  "Ph.D holders": 4,
+  "publications":102,
+  "research projects":84
+
+  },
+  {
+    "branch": "Electronics and Communication Engineering",
+    "engg/non-engg":"engineering",
+    "established":1983,
+    "hod":"Dr Jayan AR",
+    "email":"arjayan@gectcr.ac.in",
+    "ug programs":
+     [
+       {
+        "course":"B.Tech in Electronics and Communication Engineering",
+        "started":1986,
+        "intake":120
+      },
+      {
+        "course":"B.Tech in Cymber Physical Systems",
+        "started":2024,
+        "intake":60
+      }
+     ],
+    "pg programs": 
+    [
+       {
+        "course":"M.Tech in Communication Engineering and Signal Processing",
+        "started":2010,
+        "intake":18
+       },
+       {
+        "course":"M.Tech in VLSI and Embedded Systems",
+        "started":2020,
+        "intake":18
+       },
+       {
+        "course":"M.Tech in Robotics and Automation",
+        "started":2024,
+        "intake":18
+       }
+    ],
+    "labs":["Electronic Circuit Laboratory","Design Studio and Workshop","Digital Electronics Laboratory","Communication Engineering Laboratory","VLSI and Embedded Systems Laboratory","Microwave Laboratory and Telematics Laboratory",
+            "Computer Laboratory","Research laboratory"],
+    "teaching faculty":21,
+    "technical staff":13,
+    "Ph.D holders":7,
+    "publications":158,
+    "research projects":174
+
+},
+{
+  "branch":"Electrical Engineering",
+  "engg/non-engg":"engineering",
+  "established":1957,
+  "hod":"Dr. Jaison Mathew",
+  "email":"jaison@ieee.org",
+  "ug programs":
+  [
+    {"course":"B.Tech in Electrical and Electronics Engineering",
+    "started":1957,
+    "intake":120}
+  ],
+  "pg programs":
+  [
+    {
+    "course":"M.Tech in Power Systems",
+    "started":1971,
+    "intake":18
+    },
+    {
+      "course":"M.Tech in Power Electronics",
+      "started":2010,
+      "intake":18
+    },
+    {
+      "course":"M.Tech in Electrical Instrumentation and Control Engineering",
+      "started":2010,
+      "intake":18
+    }
+  ],
+  "labs":["Power Electronics Lab","Electronics Lab","Control System Lab","Computer Lab","New Research Lab",
+  "Project Lab","Electrical Machines Lab","Old Research Lab","Measurement Lab","Electrical Workshop"],
+  "teaching faculty":33,
+  "technical staff":22,
+  "Ph.D holders":14,
+  "publications":270,
+  "research projects":284
+},
+{
+  
+    "branch": "Mechanical Engineering",
+    "engg/non-engg":"engineering",
+    "established":1957,
+  "hod": "Dr.Rajesh Vanchipura",
+  "email": "rajeshvanchipura@gmail.com",
+  "ug programs":
+  [
+   { "course":"B.Tech in Mechanical Engineering",
+    "started":1957,
+    "intake":120}
+  ],
+  "pg programs":[
+    {
+      "course":"M.Tech in Production Engineering",
+      "started":1971,
+      "intake":18
+    },
+    {
+      "course":"M.Tech in Internal Cumbustion Engines and Turbo Machinery",
+      "started":2010,
+      "intake":18
+    },
+    {
+      "course":"M.Tech in Industrial Engineering and Management",
+      "started":2020,
+      "intake":18
+    }
+
+  ],
+  "labs": ["CAD Lab", "Fluid Mechanics and Machinery Lab", "Heat Engine Lab","Instrumentation Lab","Post Graduate Production Engineering Lab",
+  "Manufacturing Technology Lab","Tribology Lab","Computational Mechanics Lab","Industrial Engineering & Management Lab","General Workshop"],
+  "teaching faculty": 36,
+  "technical staff":34,
+  "Ph.D holders": 19,
+  "publications":263,
+  "research projects":253
+},
+{
+   "branch": "Civil Engineering",
+   "engg/non-engg":"engineering",
+    "established":1957,
+  "hod": "Dr. SREELEKHA M G",
+  "email": "mg_sreelekha@gectcr.ac.in",
+  "ug programs": 
+  [
+    {
+      "course":"B.Tech in Civil Engineering",
+      "intake":120
+    }
+  ],
+  "pg programs":
+  [
+    {
+      "course":"M.Tech in Structural Engineering",
+      "intake":18
+    },
+    {
+      "course":"M.Tech in Environmental Engineering",
+      "intake":18
+    },
+    {
+      "course":"M.Tech in Water Resources and Hydroinformatics",
+      "intake":18
+    },
+    {
+      "course":"M.Tech in Geotechnical Engineering",
+      "intake":9
+    }
+  ],
+  "labs": ["Computer Aided Design Lab", "Environmental Engineering Lab", "Geotechnical Engineering Lab","Hydro informatics Lab",
+  "Material Testing Lab","Transportation Lab","Survey Lab","Strength of Materials Lab","Structural Engineering Lab"],
+  "teaching faculty": 37,
+  "technical staff":18,
+  "Ph.D holders": 11,
+  "publications":264,
+  "research projects":216
+},
+{
+  "branch": "Production Engineering",
+  "engg/non-engg":"engineering",
+    "established":1979,
+  "hod": "Dr. Haris Naduthodi",
+  "email": "haris@gectcr.ac.in",
+  "ug programs": 
+  [
+    {
+      "course":"B.Tech in Production Engineering",
+      "intake":60
+    }
+  ],
+  "pg programs":
+  [
+    {
+      "course":"M.Tech in Manufacturing Systems and Management",
+      "intake":18
+    },
+    {
+      "course":"M.Tech in Environmental Engineering",
+      "intake":18
+    },
+    {
+      "course":"M.Tech in Engineering Design",
+      "intake":18
+    }
+  ],
+  "labs": ["Metrology Lab", "Computer Aided Manufacturing and Inspection Center", "CAD Lab"],
+  "teaching faculty": 15,
+  "technical staff":6,
+  "Ph.D holders": 5,
+  "publications":74,
+  "research projects":120
+},
+{
+  
+  "branch": " Department of Architecture",
+  "engg/non-engg":"engineering",
+    "established":2002,
+  "hod": "SURYA S",
+  "email": "arsuryas@gectcr.ac.in",
+  "ug programs": 
+  [
+    {
+      "course":"B.Arch",
+      "intake":40
+    }
+  ],
+  "pg programs":
+  [
+    {
+      "course":"M.Plan (Urban Planning)",
+      "intake":18
+    }
+  ],
+  "teaching faculty": 21,
+  "technical staff":1,
+  "Ph.D holders": 1,
+  "publications":91,
+  "research projects":221
+},
+{
+    
+  "branch": " Chemical Engineering",
+  "engg/non-engg":"engineering",
+    "established":1985,
+  "hod": "FASNABI P A",
+  "email": "fasna@gectcr.ac.in",
+  "ug programs": 
+  [
+    {
+      "course":"B.Tech in Checmical Engineering",
+      "intake":120
+    }
+  ],
+  "pg programs":
+  [
+    {
+      "course":"M.Tech in Process Control",
+      "intake":18
+    },
+    {
+      "course":"M.Tech in Health Safety and Environment Management",
+      "intake":18
+    }
+  ],
+  "teaching faculty": 21,
+  "technical staff":11,
+  "Ph.D holders": 11,
+  "publications":259,
+  "research projects":135
+},
+{
+  "branch": "Department of Computer Applications",
+  "engg/non-engg":"engineering",
+    "established":1989,
+  "hod": "Dr. Sminesh C N",
+  "email": "smineshcn@gmail.com",
+  "pg programs":
+  [
+    {
+      "course":"Master in Computer Applications (MCA)",
+      "intake":60
+    }
+  ],
+  "teaching faculty": 6,
+  "technical staff":2,
+  "Ph.D holders": 1,
+  "publications":37,
+  "research projects":158
+},
+{
+  "branch": "Department of Mathematics",
+  "engg/non-engg":"non-engineering",
+    "established":1957,
+  "hod": "Seema Varghese",
+  "email": "seemavarghese@gectcr.ac.in",
+  "teaching faculty": 9,
+  "technical staff":0,
+  "Ph.D holders": 4,
+  "publications":100,
+  "research projects":3
+},
+{
+  "branch": "Department of Physics",
+  "engg/non-engg":"non-engineering",
+    "established":1980,
+  "hod": "Prasanth P",
+  "email": "prasanthpnairg@gmail.com",
+  "teaching faculty": 6,
+  "technical staff":0,
+  "Ph.D holders": 2,
+  "publications":24,
+  "research projects":7
+},
+{
+  "branch": "Department of Chemistry",
+  "engg/non-engg":"non-engineering",
+    "established":1980,
+  "hod": "VENUGOPALAN P",
+  "email": "venugpamrita@gmail.com",
+  "teaching faculty": 7,
+  "technical staff":0,
+  "Ph.D holders": 2,
+  "publications":85,
+  "research projects":25
+},
+{
+  "branch": "Department of Economics",
+  "engg/non-engg":"non-engineering",
+    "established":1980,
+  "teaching faculty": 1,
+  "technical staff":0,
+  "Ph.D holders": 1,
+  "publications":10,
+  "research projects":0
+},
+{
+  "branch": "Department of Physical Education",
+  "engg/non-engg":"non-engineering",
+    "established":1980,
+  "hod": "Dr. SHEJIN K V",
+  "email": "shejin@gectcr.ac.in",
+  "teaching faculty": 2,
+  "technical staff":2,
+  "Ph.D holders": 2,
+  "publications":34,
+  "research projects":0
+}
+]

@@ -1,0 +1,10 @@
+{
+  "email": "fasna@gectcr.ac.in",
+  "ug_programs": [
+    { "course": "B.Tech in Chemical Engineering", "intake": 120 }
+  ],
+  "pg_programs": [
+    { "course": "M.Tech in Process Control", "intake": 18 },
+    { "course": "M.Tech in Health Safety and Environment Management", "intake": 18 }
+  ]
+}
