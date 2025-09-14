@@ -1,0 +1,85 @@
+{
+"Training_and_Placement_Officer": "Dr. Subin Poulose",
+"Phone_Number": "+91 9447509845",
+"Email": "placement@gectcr.ac.in",
+"Placement_History":
+[
+  {
+    "year": 2024,
+    "companies": ["IOAGPL","Mitsogo Technology","Tismo Technologies","IBM","QBurst","Fleet","Pyzaql","Tejas Networks","Federal Bank PG","Sud Chemie","MRF CH","Anora II","Concept Dash","UST","MRF","South Indian Bank","PKJ Technologies","TCS","TVS Motor","Baton Systems","Sobha Constructions","L&T Technology Services Limited - PG","Verteil Technologies","L&T","Cavli Wireless","Impelsys","ignitarium","Anora","Accenture","Tata Elxsi","Trane Technologies","Aarbee Structures","AMARA RAJA DESIGN ALPHA","Nayara Energy Limited","Oracle Financial Software Services","Hyundai Motors","Renault Nissan Technology","Tarento","CRED","Zircle","Incture","Mu Sigma","Air India"],
+    "total_offers": 276,
+    "average_package": "",
+    "highest_package": ""
+  },
+  {
+    "year": 2023,
+    "companies": ["Federal Bank","Anora III","MRF","Anora","Accenture","Oracle FSS","Qualitest","CTS GenC/GenC Elevate","Sobha Constructions Dubai","Tata Elxsi","Fleet Management","Infosys - DSE","Aarbee Structures","Experion Technologies","Mindtree","ECS Fin","CDM Smith Global Services","TARENTO","Incture","Tech Mahindra","RCKR Software","Schilthorn Precision","Acero","Plant Lipids","Kantar II","Mitsogo Technologies","QBurst","JSW","Aakash Byju's II","Nayara Energy","Hitachi Energy","Air Water India","Reliance Industries Ltd","SFO Technologies","CoreEL","ESAF","TCS Ninja","Federal Bank PG","Sud Chemie","iHub-Data","Envestnet","South Indian Bank","EY GDS","KeyValue","Saint Gobain","Ganit","Baton Systems","Tismo","Renault Nissan Technology PG","L&T II","Publicis Sapient","Technomak","J&J Sourcing","Maventic Innovative Solutions","Apollo Tyres","Corizo","Tech Mahindra Cerium"],
+    "total_offers": 613,
+    "average_package": "",
+    "highest_package": ""
+  },
+  {
+    "year": 2022,
+    "companies": ["Sedai","Sud Chemie","TCS Ninja","BYJU'S I","Mahindra","CommScope","DCKAP","South Indian Bank","EY GDS","IBS","Kaynes Technology","Danfoss","Mitsogo","BATON SYSTEMS","CTS GenC Elevate","Virtusa","Exlygenze","Indian Oil Adani Gas Pvt. Ltd","CRED","Tech PSC","MU Sigma","NuChange Informatics","CoreEL","Federal Bank","Zafin","KPMG","Oracle FSS","Accenture","Daivik Technologies","IBM II","Tata Elxsi II","JSW","Nayara Energy","Akash Institute","My Captain","Applied Materials India","SFO","Hexaware Technologies","SeOnCloud"],
+    "total_offers": 761,
+    "average_package": "32 LPA",
+    "highest_package": "6.8 LPA"
+  },
+  {
+    "year": 2021,
+    "companies": ["Market Simplified","TCS Ninja","BTL","TCS Digital","Keyvalue Software Systems Pvt Ltd","Nggave Nirman","Quest Global","QBurst","SFO","KSB MIL","Sentient","BYJUS","IIFL","Nitta Gelatin India Ltd.","Deloitte Consulting India Pvt Ltd","ENVESTNET","South Indian Bank","Vodafone Idea","Baton Systems","Fleet","Tarento Technologies","Federal Bank UG","Pwc AC","Applexus","Prudent Technologies","Mu Sigma","Helium Consulting Pvt Ltd","MRF Tyres","UST Global","Acero Structural Engineers Pvt Ltd","Plant Lipids","Amphenol FCI","Petronet LNG Ltd Apprenticeship","WABCO","Mitsogo","Saint Gobain","Oracle FSS"],
+    "total_offers": 478,
+    "average_package": "",
+    "highest_package": ""
+  },
+  {
+    "year": 2020,
+    "companies": ["UST Global","XL Dynamics India","RCKR","MRF","Oracle FSS","Tata Elxsi","INFOSYS","HLS Asia Limited","CTS","OEN (Amphenol FCI)","Carestack","Predmac Technologies","CoreEL Technologies","TCS NINJA","KPIT","TCS Digital","EY GDS","WABCO India Ltd","Quest Global","VVDN Technologies","Fleet Management","Mitsogo","Nemchand Jain","Oracle Applications","QBurst","Cerium Systems","Think and Learn Pvt Ltd","SFO Technologies","Tarento","Incture Technologies","Air Products India Pvt Ltd","Reliance Industries","Federal Bank PG","KSB MIL Controls Ltd","Nitta Gelatin","Plant Lipids Pvt Ltd","Spell Security","Nissan Digital","MRF (Purchase)","Enpossibilities","ABB India LTD","EY","VKC","Baton Systems","Market Simplified Pvt Ltd"],
+    "total_offers": 465,
+    "average_package": "",
+    "highest_package": ""
+  },
+  {
+    "year": 2019,
+    "companies": ["Nitta Gelatin","Nissan Digital","Qwave","ENVESTNET","ULTS","WABCO India Ltd.","ABB India LTD","AMAZON","Alutec","Ribbon Communications","VKC","BATON SYSTEMS","THINKPALM","Fingent","ECI TELECOM","FEDERAL BANK PG2","MULTIPLEX","HEXAWARE TECHNOLOGIES","RELIANCE # CS/EC","SunTec Business solutions","Uvionics","Market Simplified Pvt Ltd","Anora Semiconductor Labs Pvt Ltd","UST Global","WIPRO","RCKR","Inntot Technologies","MRF","QWave","FEDERAL BANK UG","HINDUJA TECH","METTLE NETWORKS","OEN India Ltd","Valued Epistemics (GREedge)","RELIANCE #CH","Dexlock"],
+    "total_offers": 445,
+    "average_package": "",
+    "highest_package": ""
+  },
+  {
+    "year": 2018,
+    "companies": ["TCS","WIPRO","ORACLE APPS","ENVESTNET","TATA ELEXSI","QUEST GLOBAL","ORACLE FSS","RELIANCE","VKC","KITCO","QBurst","MRF","GES INFOTECH","TVS FASTENERS","FLEET MANAGEMENT","EY","NITTA GELATIN","SPELL SECURITY","BPCL","FEDERAL BANK","CERIUM SYSTEMS","NISSAN DIGITAL","PREDMAC","ECI TELECOM","INFOSYS","SUNDARAM CLAYTON","South Indian Bank","Petrocil","Petronet LNG"],
+    "total_offers": 221,
+    "average_package": "",
+    "highest_package": ""
+  },
+  {
+    "year": 2017,
+    "companies": ["TCS DESS","TCS","Oracle FSS T A","Oracle FSS A C","Quest Global","Accenture","Wipro","Envestnet","Zafin","Sutherland","Oracle Apps","L&T InfoTech","Reliance","VKL","RCKR","Rolls Royce","BPCL","SunTec","MRF","Huawei","RMC","BLP","Fleet Management","Teknowmics","Federal Bank","Apollo Tyres"],
+    "total_offers": 353,
+    "average_package": "",
+    "highest_package": ""
+  },
+  {
+    "year": 2016,
+    "companies": ["Mu-Sigma","TCS","Oracle FSS","QBurst","Accenture","UST Global","SunTec","VKL","Tata Elxsi","Oracle Apps","Yahoo","Zafin","Sutherland","Wipro","Reliance Industries","L&T Technology Services","Bosch","Synthite","KITCO","SAP Labs","Huawei","Quest Global","MRF","Xurmo","RCKR","MIL","Syngene"],
+    "total_offers": 545,
+    "average_package": "",
+    "highest_package": ""
+  },
+  {
+    "year": 2015,
+    "companies": ["Oracle Apps","ChalkStudio","TCS","QBurst","NeST Technologies","SunTec","Mu-Sigma","KITCO","IBS","Oracle FSS","MRF","BPCL","SAP Labs"],
+    "total_offers": 244,
+    "average_package": "",
+    "highest_package": ""
+  },
+  {
+    "year": 2014,
+    "companies": ["TCS","Wipro","Chainalytics","NeST Technologies","SunTec","Reliance Industries","Idea","SAP Labs","UST Global","IBS","IBM","Flextronics","Oracle FSS","South Indian Bank","CTS","BPCL","Focaloid","RCKR","Infosys","KITCO","ONGC","MRF","MIL","Federal Bank"],
+    "total_offers": 302,
+    "average_package": "",
+    "highest_package": ""
+  }
+]
+}

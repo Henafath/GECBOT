@@ -5,16 +5,25 @@ from pymongo import MongoClient
 client = MongoClient("mongodb+srv://tcr22cs036:rLESg7RdnrH4Sedd@henascluster.ifrft.mongodb.net/gect_chatbot?retryWrites=true&w=majority")
 db = client["gect_chatbot"]  # Database name
 
-# Load and insert departments
-with open("departments.json", "r") as f:
-    departments = json.load(f)
-    db.departments.delete_many({})   # clear old data
-    db.departments.insert_many(departments)
-    print(f"Inserted {len(departments)} departments")
+with open("" \
+"data/placement.json") as f:
+    placement = json.load(f)
 
-# Load and insert faculty
-with open("faculty.json", "r") as f:
-    faculty = json.load(f)
-    db.faculty.delete_many({})   # clear old data
-    db.faculty.insert_many(faculty)
-    print(f"Inserted {len(faculty)} faculty members")
+
+history = placement.get("Placement_History", [])
+
+if history:
+    # add officer/phone/email info to each year’s record
+    
+# 🔥 Delete old data
+    db.placement.delete_many({})
+    for record in history:
+        record["Training_and_Placement_Officer"] = placement["Training_and_Placement_Officer"]
+        record["Phone_Number"] = placement["Phone_Number"]
+        record["Email"] = placement["Email"]
+
+    db.placement.insert_many(history)
+else:
+    print("⚠️ No placement history found")
+
+
