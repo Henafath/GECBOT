@@ -25,7 +25,7 @@ def get_pg_programs():
 # ✅ Placements stored separately (unchanged)
 def get_placements(year=None):
     query = {"year": year} if year else {}
-    return list(db.placements.find(query, {"_id": 0}))
+    return list(db.placement.find(query, {"_id": 0}))
 
 # ✅ Contact info stored separately (unchanged)
 def get_faculty_contacts():

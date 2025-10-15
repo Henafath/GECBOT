@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from services.db_service import get_ug_programs, get_pg_programs, get_db
 
 department_bp = Blueprint("department_bp", __name__)
@@ -30,3 +30,15 @@ def fetch_departments():
         return jsonify({"departments": departments}), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+    
+# Get department info
+@department_bp.route("/department", methods=["GET"])
+def get_department():
+    db= get_db()
+    name = request.args.get("name")
+    if not name:
+        return jsonify({"error": "Department name is required"}), 400
+    department = db.departments.find_one({"branch": name}, {"_id": 0})
+    if not department:
+        return jsonify({"error": "Department not found"}), 404
+    return jsonify(department)
