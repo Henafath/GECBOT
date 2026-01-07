@@ -1,4 +1,9 @@
-from flask import jsonify, request
+from flask import jsonify
+
+def handler(req):
+    return jsonify({"fulfillmentText": "Webhook is alive"})
+
+'''from flask import jsonify, request
 
 from routes.department_routes import fetch_ug_programs, fetch_pg_programs
 from routes.department_routes import fetch_departments, get_department
@@ -56,3 +61,4 @@ def handler(req):
         return jsonify({"fulfillmentText": "I will learn this soon."})
 
     return jsonify({"fulfillmentText": "Sorry, I couldn't understand your request."})
+'''
