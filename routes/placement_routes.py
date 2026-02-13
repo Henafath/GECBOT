@@ -15,7 +15,7 @@ def get_all_placements():
 
 #Route 2: Get placement data by year (example:/api/placements/2024)
 
-@placement_bp.route("/api/placements/<int-year>", methods=["GET"])
+@placement_bp.route("/api/placements/<int:year>", methods=["GET"])
 def get_placements_by_year(year):
    try:
      data = get_placements(year)

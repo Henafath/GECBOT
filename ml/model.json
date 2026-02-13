@@ -1,0 +1,18 @@
+[
+  {
+    "question": "Is hostel available?",
+    "answer": "Yes, hostel facilities are available.",
+    "trained": true
+  },
+  {
+    "question": "What is lateral entry?",
+    "answer": "Diploma holders can join B.Tech in second year.",
+    "trained": true
+  },
+  {
+    "question": "Does GEC have placements?",
+    "answer": "Yes, many companies visit for campus placements.",
+    "trained": true
+  }
+]
+

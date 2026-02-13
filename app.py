@@ -6,6 +6,7 @@ from routes.placement_routes import placement_bp, df_get_all_placements, df_get_
 from routes.contact_routes import df_get_contact
 from ml.predict import predict_answer
 from routes.admin_routes import admin_bp
+from ml.train_model import train
 
 
 from services.db_service import get_db
@@ -21,6 +22,13 @@ def create_app():
     app.register_blueprint(department_bp,url_prefix="/api")
     app.register_blueprint(faculty_bp,url_prefix="/api")
     app.register_blueprint(placement_bp)
+    from ml.train_model import train
+
+    @app.route("/admin/train", methods=["POST"])
+    def retrain():
+     train()
+     return {"message": "Model trained successfully"}
+
     @app.route('/webhook', methods=['POST'])
     def webhook():
         req = request.get_json()
@@ -80,4 +88,6 @@ def create_app():
 
 if __name__ == "__main__":
     app = create_app()
+    
+    app.run(debug=True)
     

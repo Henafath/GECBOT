@@ -22,3 +22,6 @@ def train():
 
     with open("ml/model.pkl", "wb") as f:
         pickle.dump((model, vectorizer), f)
+
+    
+    print("Model trained successfully!")

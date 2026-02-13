@@ -1,16 +1,16 @@
 from pymongo import MongoClient
 from config import Config
-
+import json
 client = MongoClient(Config.MONGO_URI)
 db = client.get_database("gect_chatbot")  # your DB name
 
-# Update all faculties with branch = "Computer Science And Engineering"
-result = db.faculty.update_many(
-    {"Department": "Computer Science And Engineering"},
-    {"$set": {"Department": "Computer Science and Engineering"}}
-)
+with open("ml/model.json", "r") as f:
+        data = json.load(f)
 
-print(f"✅ Modified {result.modified_count} documents")
+result = db.unanswered_queries.insert_many(data)
+
+
+print(f"✅ Modified {result.inserted_ids} documents")
 
 
 
