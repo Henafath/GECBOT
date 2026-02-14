@@ -1,15 +1,41 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, render_template, request, redirect, session
 from services.db_service import get_db
 from ml.train_model import train
+import os
 
 admin_bp = Blueprint("admin_bp", __name__)
+db=get_db()
 
-# View unanswered questions
-@admin_bp.route("/admin/unanswered", methods=["GET"])
-def get_unanswered():
-    db = get_db()
-    data = list(db.unanswered_queries.find({"trained": False}, {"_id": 0}))
-    return jsonify(data)
+ADMIN_USER = os.getenv("ADMIN_USER")
+ADMIN_PASS = os.getenv("ADMIN_PASS")
+# Login page
+@admin_bp.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
+
+        if username == ADMIN_USER and password == ADMIN_PASS:
+            session["admin"] = True
+            return redirect("/admin")
+
+        return "Invalid credentials"
+
+    return render_template("login.html")
+
+# Logout
+@admin_bp.route("/logout")
+def logout():
+    session.pop("admin", None)
+    return redirect("/login")
+@admin_bp.route("/admin")
+def admin_home():
+    if not session.get("admin"):
+        return redirect("/login")
+
+    data = list(db.unanswered_queries.find({"trained": False}))
+    return render_template("admin.html", queries=data)
+
 
 # Save admin answers
 @admin_bp.route("/admin/answer", methods=["POST"])

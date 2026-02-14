@@ -9,12 +9,14 @@ from routes.admin_routes import admin_bp
 from ml.train_model import train
 
 
+
 from services.db_service import get_db
 from flask_cors import CORS
 
 
 def create_app():
     app = Flask(__name__)
+    app.secret_key = "CTdgxUYFrdf276GFVa"
     CORS(app)
     
     app.register_blueprint(admin_bp)
@@ -22,12 +24,6 @@ def create_app():
     app.register_blueprint(department_bp,url_prefix="/api")
     app.register_blueprint(faculty_bp,url_prefix="/api")
     app.register_blueprint(placement_bp)
-    from ml.train_model import train
-
-    @app.route("/admin/train", methods=["POST"])
-    def retrain():
-     train()
-     return {"message": "Model trained successfully"}
 
     @app.route('/webhook', methods=['POST'])
     def webhook():
