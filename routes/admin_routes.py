@@ -2,9 +2,11 @@ from flask import Blueprint, jsonify, render_template, request, redirect, sessio
 from services.db_service import get_db
 from ml.train_model import train
 import os
+from flask import url_for
 
 admin_bp = Blueprint("admin_bp", __name__)
 db=get_db()
+
 
 ADMIN_USER = os.getenv("ADMIN_USER")
 ADMIN_PASS = os.getenv("ADMIN_PASS")
@@ -17,12 +19,18 @@ def login():
 
         if username == ADMIN_USER and password == ADMIN_PASS:
             session["admin"] = True
-            return redirect("/admin")
+            return redirect(url_for("admin_bp.dashboard"))
 
-        return "Invalid credentials"
+        return render_template("login.html", error="Invalid credentials")
 
+   
     return render_template("login.html")
 
+@admin_bp.route("/dashboard")
+def dashboard():
+    if not session.get("admin"):
+        return redirect(url_for("admin_bp.login"))
+    return render_template("dashboard.html")
 # Logout
 @admin_bp.route("/logout")
 def logout():

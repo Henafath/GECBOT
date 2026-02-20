@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GECBot Admin Panel</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2>Admin Panel</h2>
+      <ul>
+        <li class="active">Dashboard</li>
+        <li>Unanswered Questions</li>
+        <li>Analytics</li>
+        <li>Logout</li>
+      </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+      <!-- Header -->
+      <header class="header">
+        <h1>Dashboard</h1>
+        <span>Welcome, Admin 👋</span>
+      </header>
+
+      <!-- Stats Cards -->
+      <section class="cards">
+        <div class="card">
+          <h3>Total Questions</h3>
+          <p>1240</p>
+        </div>
+
+        <div class="card">
+          <h3>Answered</h3>
+          <p>1180</p>
+        </div>
+
+        <div class="card">
+          <h3>Unanswered</h3>
+          <p class="warning">60</p>
+        </div>
+      </section>
+
+      <!-- Unanswered Questions -->
+      <section class="table-section">
+        <h2>Unanswered Questions</h2>
+
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Question</th>
+              <th>Date</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>001</td>
+              <td>What is the last rank for CSE?</td>
+              <td>15 Feb 2026</td>
+              <td><span class="badge">Pending</span></td>
+            </tr>
+
+            <tr>
+              <td>002</td>
+              <td>Hostel fees details?</td>
+              <td>14 Feb 2026</td>
+              <td><span class="badge">Pending</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+    </main>
+  </div>
+
+</body>
+</html>

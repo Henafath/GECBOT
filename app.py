@@ -7,11 +7,16 @@ from routes.contact_routes import df_get_contact
 from ml.predict import predict_answer
 from routes.admin_routes import admin_bp
 from ml.train_model import train
+ 
 
 
 
 from services.db_service import get_db
 from flask_cors import CORS
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 
 def create_app():
