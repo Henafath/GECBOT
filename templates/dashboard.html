@@ -13,10 +13,10 @@
     <aside class="sidebar">
       <h2>Admin Panel</h2>
       <ul>
-        <li class="active">Dashboard</li>
-        <li>Unanswered Questions</li>
-        <li>Analytics</li>
-        <li>Logout</li>
+        <li><a href="{{ url_for('admin_bp.dashboard') }}">Dashboard</a></li>
+        <li><a href="{{ url_for('admin_bp.all_questions') }}">All Questions</a></li>
+        <li><a href="{{ url_for('admin_bp.analytics') }}">Analytics</a></li>
+        <li><a href="{{ url_for('admin_bp.logout') }}">Logout</a></li>
       </ul>
     </aside>
 
@@ -33,17 +33,17 @@
       <section class="cards">
         <div class="card">
           <h3>Total Questions</h3>
-          <p>1240</p>
+          <p>{{ total }}</p>
         </div>
 
         <div class="card">
           <h3>Answered</h3>
-          <p>1180</p>
+          <p>{{ answered }}</p>
         </div>
 
         <div class="card">
           <h3>Unanswered</h3>
-          <p class="warning">60</p>
+          <p class="warning">{{ unanswered }}</p>
         </div>
       </section>
 
@@ -62,19 +62,14 @@
           </thead>
 
           <tbody>
-            <tr>
-              <td>001</td>
-              <td>What is the last rank for CSE?</td>
-              <td>15 Feb 2026</td>
-              <td><span class="badge">Pending</span></td>
-            </tr>
-
-            <tr>
-              <td>002</td>
-              <td>Hostel fees details?</td>
-              <td>14 Feb 2026</td>
-              <td><span class="badge">Pending</span></td>
-            </tr>
+          {% for q in questions %}
+          <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ q.question }}</td>
+            <td>{{ q.created_at.strftime("%d %b %Y") if q.created_at else "N/A" }}</td>
+            <td><span class="badge">Pending</span></td>
+          </tr>
+          {% endfor %}
           </tbody>
         </table>
       </section>

@@ -30,21 +30,44 @@ def login():
 def dashboard():
     if not session.get("admin"):
         return redirect(url_for("admin_bp.login"))
-    return render_template("dashboard.html")
+    total_questions = db.unanswered_queries.count_documents({})
+    answered = db.unanswered_queries.count_documents({"trained": True})
+    unanswered = db.unanswered_queries.count_documents({"trained": False})
+
+    questions = list(
+        db.unanswered_queries.find({"trained": False}).sort("created_at", -1).limit(10)
+    )
+
+    return render_template(
+        "dashboard.html",
+        total=total_questions,
+        answered=answered,
+        unanswered=unanswered,
+        questions=questions
+    )
 # Logout
 @admin_bp.route("/logout")
 def logout():
     session.pop("admin", None)
     return redirect("/login")
-@admin_bp.route("/admin")
-def admin_home():
+#@admin_bp.route("/admin")
+#def admin_home():
+ #   if not session.get("admin"):
+  #      return redirect("/login")
+
+   # data = list(db.unanswered_queries.find({"trained": False}))
+    #return render_template("admin.html", queries=data)
+
+@admin_bp.route("/questions")
+def all_questions():
     if not session.get("admin"):
-        return redirect("/login")
+        return redirect(url_for("admin_bp.login"))
 
-    data = list(db.unanswered_queries.find({"trained": False}))
-    return render_template("admin.html", queries=data)
+    questions = list(
+        db.unanswered_queries.find().sort("created_at", -1)
+    )
 
-
+    return render_template("all_questions.html", questions=questions)
 # Save admin answers
 @admin_bp.route("/admin/answer", methods=["POST"])
 def save_answer():
@@ -63,3 +86,36 @@ def save_answer():
 def retrain_model():
     train()
     return jsonify({"message": "Model retrained successfully"})
+
+@admin_bp.route("/analytics")
+def analytics():
+    if not session.get("admin"):
+        return redirect(url_for("admin_bp.login"))
+
+    total = db.unanswered_queries.count_documents({})
+    answered = db.unanswered_queries.count_documents({"trained": True})
+    unanswered = db.unanswered_queries.count_documents({"trained": False})
+
+    # Example analytics: questions per day
+    pipeline = [
+        {
+            "$group": {
+                "_id": {
+                    "year": {"$year": "$created_at"},
+                    "month": {"$month": "$created_at"},
+                    "day": {"$dayOfMonth": "$created_at"}
+                },
+                "count": {"$sum": 1}
+            }
+        }
+    ]
+
+    daily_stats = list(db.unanswered_queries.aggregate(pipeline))
+
+    return render_template(
+        "analytics.html",
+        total=total,
+        answered=answered,
+        unanswered=unanswered,
+        daily_stats=daily_stats
+    )

@@ -1,0 +1,29 @@
+<h1>All Questions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Question</th>
+      <th>Status</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {% for q in questions %}
+    <tr>
+      <td>{{ loop.index }}</td>
+      <td>{{ q.question }}</td>
+      <td>
+        {% if q.trained %}
+          <span class="badge-success">Answered</span>
+        {% else %}
+          <span class="badge">Pending</span>
+        {% endif %}
+      </td>
+      <td>{{ q.created_at.strftime("%d %b %Y") if q.created_at else "N/A" }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

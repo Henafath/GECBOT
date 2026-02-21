@@ -1,0 +1,15 @@
+<h1>Analytics</h1>
+
+<p>Total Questions: {{ total }}</p>
+<p>Answered: {{ answered }}</p>
+<p>Unanswered: {{ unanswered }}</p>
+
+<h2>Daily Question Count</h2>
+<ul>
+  {% for day in daily_stats %}
+    <li>
+      {{ day._id.day }}/{{ day._id.month }}/{{ day._id.year }} :
+      {{ day.count }} questions
+    </li>
+  {% endfor %}
+</ul>

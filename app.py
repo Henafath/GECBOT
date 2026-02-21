@@ -7,10 +7,7 @@ from routes.contact_routes import df_get_contact
 from ml.predict import predict_answer
 from routes.admin_routes import admin_bp
 from ml.train_model import train
- 
-
-
-
+from datetime import datetime,timezone
 from services.db_service import get_db
 from flask_cors import CORS
 from dotenv import load_dotenv
@@ -75,7 +72,8 @@ def create_app():
           db.unanswered_queries.insert_one({
             "question": req["queryResult"]["queryText"],
            "answer": None,
-            "trained": False
+            "trained": False,
+            "created_at": datetime.now(timezone.utc)
             })
 
           return jsonify({"fulfillmentText": "I will learn this soon. Our team will update me."})
