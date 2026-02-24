@@ -1,4 +1,6 @@
 flask
-'''
+flask-cors
 pymongo
-scikit-learn '''
+python-dotenv
+scikit-learn
+selenium
