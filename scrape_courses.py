@@ -34,10 +34,17 @@ DEPT_MAP = {
 # -------- UG SCRAPING ----------
 ###################################
 
+
+elements = driver.find_elements(By.XPATH, "//*[contains(text(),'B.Tech')]")
+
+print("Found elements:", len(elements))
+
+for e in elements:
+    print("TEXT:", e.text)
+
 cards = driver.find_elements(By.XPATH, "//div[contains(text(),'B.Tech in')]")
 
 for i in range(len(cards)):
-    cards = driver.find_elements(By.XPATH, "//div[contains(text(),'B.Tech in')]")
 
     cards[i].click()
     time.sleep(3)

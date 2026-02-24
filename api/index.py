@@ -64,5 +64,3 @@ def webhook():
     return jsonify({"fulfillmentText": "Sorry, I didn't understand that."})
 
 
-def handler(request):
-    return app(request)
