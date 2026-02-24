@@ -27,61 +27,6 @@ def create_app():
     app.register_blueprint(faculty_bp,url_prefix="/api")
     app.register_blueprint(placement_bp)
 
-    @app.route('/webhook', methods=['POST'])
-    def webhook():
-        req = request.get_json()
-        intent = req['queryResult']['intent']['displayName']
-    
-        if intent == "GetUGProgramsIntent":
-          return fetch_ug_programs()
-
-        elif intent == "GetPGProgramsIntent":
-          return fetch_pg_programs()
-
-        elif intent == "GetAllDepartmentsIntent":
-          return fetch_departments()
-
-        elif intent == "GetDepartmentInfoIntent":
-          return get_department(req)
-        
-        elif intent == "GetAllFacultiesIntent":
-          return df_get_all_faculties()
-
-        elif intent == "GetFacultyContactsIntent":
-           return df_get_faculty_contacts()
-
-        elif intent == "GetFacultyByDepartmentIntent":
-          return df_get_faculty_by_department(req)
-        
-        elif intent == "GetAllPlacementsIntent":
-          return df_get_all_placements()
-
-        elif intent == "GetPlacementsByYearIntent":
-         return df_get_placements_by_year(req)
-
-        elif intent == "GetContactIntent":
-         return df_get_contact()
-        
-        elif intent == "Default Fallback Intent":
-          answer = predict_answer(req["queryResult"]["queryText"])
-
-          if answer:
-           return jsonify({"fulfillmentText": answer})
-
-          db = get_db()
-          db.unanswered_queries.insert_one({
-            "question": req["queryResult"]["queryText"],
-           "answer": None,
-            "trained": False,
-            "created_at": datetime.now(timezone.utc)
-            })
-
-          return jsonify({"fulfillmentText": "I will learn this soon. Our team will update me."})
-
-        else:
-             return jsonify({"fulfillmentText": "Sorry, I didn't understand that."})
-
-   
 # Register chatbot routes
     return app
 
