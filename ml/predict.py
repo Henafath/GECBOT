@@ -1,4 +1,6 @@
 import pickle
+import os
+os.environ["JOBLIB_MULTIPROCESSING"] = "0"
 
 def predict_answer(text):
     with open("ml/model.pkl", "rb") as f:
