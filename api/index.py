@@ -46,7 +46,21 @@ def webhook():
         return df_get_contact()
 
     elif intent == "Default Fallback Intent":
-     return jsonify({"fulfillmentText": "Fallback working"})
+        answer = predict_answer(req["queryResult"]["queryText"])
+
+        if answer:
+            return jsonify({"fulfillmentText": answer})
+
+        db = get_db()
+        db.unanswered_queries.insert_one({
+            "question": req["queryResult"]["queryText"],
+            "answer": None,
+            "trained": False,
+            "created_at": datetime.now(timezone.utc)
+        })
+
+        return jsonify({"fulfillmentText": "I will learn this soon. Our team will update me."})
+
     return jsonify({"fulfillmentText": "Sorry, I didn't understand that."})
 
 
