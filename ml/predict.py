@@ -1,31 +1,26 @@
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.linear_model import LogisticRegression
-from services.db_service import get_db
+import os
+import pickle
+
+model = None
+vectorizer = None
+
+def load_model():
+    global model, vectorizer
+
+    if model is None:
+        BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+        MODEL_PATH = os.path.join(BASE_DIR, "model.pkl")
+
+        with open(MODEL_PATH, "rb") as f:
+            model, vectorizer = pickle.load(f)
 
 def predict_answer(text):
-    db = get_db()
+    load_model()
 
-    # Fetch only trained Q&A pairs
-    data = list(db.unanswered_queries.find({"trained": True}))
+    X = vectorizer.transform([text])
+    pred = model.predict_proba(X)
 
-    if not data:
+    if max(pred[0]) < 0.6:
         return None
 
-    questions = [item["question"] for item in data]
-    answers = [item["answer"] for item in data]
-
-    # Train model in memory
-    vectorizer = TfidfVectorizer()
-    X = vectorizer.fit_transform(questions)
-
-    model = LogisticRegression()
-    model.fit(X, answers)
-
-    # Predict
-    X_test = vectorizer.transform([text])
-    prob = model.predict_proba(X_test)
-
-    if max(prob[0]) < 0.6:
-        return None
-
-    return model.classes_[prob.argmax()]
+    return model.classes_[pred.argmax()]
