@@ -1,17 +1,31 @@
-import pickle
-import os
-os.environ["JOBLIB_MULTIPROCESSING"] = "0"
-
-
-# Load model once when module loads
-with open("ml/model.pkl", "rb") as f:
-    model, vectorizer = pickle.load(f)
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.linear_model import LogisticRegression
+from services.db_service import get_db
 
 def predict_answer(text):
-    X = vectorizer.transform([text])
-    pred = model.predict_proba(X)
+    db = get_db()
 
-    if max(pred[0]) < 0.6:
+    # Fetch only trained Q&A pairs
+    data = list(db.unanswered_queries.find({"trained": True}))
+
+    if not data:
         return None
 
-    return model.classes_[pred.argmax()]
+    questions = [item["question"] for item in data]
+    answers = [item["answer"] for item in data]
+
+    # Train model in memory
+    vectorizer = TfidfVectorizer()
+    X = vectorizer.fit_transform(questions)
+
+    model = LogisticRegression()
+    model.fit(X, answers)
+
+    # Predict
+    X_test = vectorizer.transform([text])
+    prob = model.predict_proba(X_test)
+
+    if max(prob[0]) < 0.6:
+        return None
+
+    return model.classes_[prob.argmax()]
