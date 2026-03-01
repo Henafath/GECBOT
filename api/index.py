@@ -46,10 +46,10 @@ def webhook():
         return df_get_contact()
 
     elif intent == "Default Fallback Intent":
-        answer = predict_answer(req["queryResult"]["queryText"])
+      #  answer = predict_answer(req["queryResult"]["queryText"])
 
-        if answer:
-            return jsonify({"fulfillmentText": answer})
+      #  if answer:
+#            return jsonify({"fulfillmentText": answer})
 
         db = get_db()
         db.unanswered_queries.insert_one({
