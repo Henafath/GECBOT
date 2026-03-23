@@ -11,9 +11,10 @@ app = create_app()
 
 @app.route('/api/webhook', methods=['POST'])
 def webhook():
+    print("STEP 1: Webhook received")
     req = request.get_json()
     intent = req['queryResult']['intent']['displayName']
-
+    print("STEP 2: Intent detected =", intent)
     if intent == "GetUGProgramsIntent":
         return fetch_ug_programs()
 
@@ -21,8 +22,10 @@ def webhook():
         return fetch_pg_programs()
 
     elif intent == "GetAllDepartmentsIntent":
-        return fetch_departments()
-
+        print("STEP 3: Enter depts intent")
+        result= fetch_departments()
+        print("STEP 4: dept data fetched")
+        return result
     elif intent == "GetDepartmentInfoIntent":
         return get_department(req)
 
