@@ -6,7 +6,7 @@ from routes.placement_routes import placement_bp
 from routes.admin_routes import admin_bp
 from flask_cors import CORS
 from dotenv import load_dotenv
-import os
+
 
 load_dotenv()
 

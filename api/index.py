@@ -4,7 +4,6 @@ from routes.department_routes import fetch_ug_programs, fetch_pg_programs, fetch
 from routes.faculty_routes import df_get_all_faculties, df_get_faculty_contacts, df_get_faculty_by_department
 from routes.placement_routes import df_get_all_placements, df_get_placements_by_year
 from routes.contact_routes import df_get_contact
-from ml.predict import predict_answer
 from services.db_service import get_db
 from datetime import datetime, timezone
 
@@ -46,6 +45,8 @@ def webhook():
         return df_get_contact()
 
     elif intent == "Default Fallback Intent":
+       
+       from ml.predict import predict_answer
        answer = predict_answer(req["queryResult"]["queryText"])
 
        if answer:
