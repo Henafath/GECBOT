@@ -1,8 +1,13 @@
 from pymongo import MongoClient
 from config import Config
 
-client = MongoClient(Config.MONGO_URI)
-db = client.get_database()
+try:  
+        client = MongoClient(Config.MONGO_URI,serverSelectionTimeoutMS=5000)
+        db = client.get_database("gect_chatbot")
+        client.server_info()
+        print("Connected to MongoDB successfully!")
+except Exception as e:
+    print(f"Error connecting to MongoDB: {e}")
 
 # ✅ Fetch all UG programs from all departments
 def get_ug_programs():
