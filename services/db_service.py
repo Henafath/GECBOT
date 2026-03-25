@@ -1,9 +1,10 @@
 from pymongo import MongoClient
 from config import Config
+import certifi
 
 try:  
-        client = MongoClient(Config.MONGO_URI,serverSelectionTimeoutMS=5000)
-        db = client.get_database("gect_chatbot")
+        client = MongoClient(Config.MONGO_URI,tlsCAFile=certifi.where())
+        db = client.get_database()
         client.server_info()
         print("Connected to MongoDB successfully!")
 except Exception as e:
