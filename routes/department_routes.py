@@ -13,7 +13,7 @@ def fetch_ug_programs():
 
         text = "UG Programs offered at GEC Thrissur:\n"
         for p in programs:
-            text += f"- {p}\n"
+            text += f"- {p.get('course')}\n"
 
         return jsonify({"fulfillmentText": text})
 
@@ -31,7 +31,7 @@ def fetch_pg_programs():
 
         text = "PG Programs offered at GEC Thrissur:\n"
         for p in programs:
-            text += f"- {p}\n"
+            text += f"- {p.get('course')}\n"
 
         return jsonify({"fulfillmentText": text})
 

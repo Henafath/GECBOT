@@ -37,7 +37,7 @@ def df_get_all_placements():
 
         text = "Placement Statistics at GEC Thrissur:\n"
         for p in data:
-            text += f"- {p.get('company')} | {p.get('year')} | {p.get('package')} LPA\n"
+            text += f"- year: {p.get('year')} | companies: {p.get('companies')} | total offers: {p.get('total_offers')}\n"
 
         return jsonify({"fulfillmentText": text})
 
@@ -60,7 +60,7 @@ def df_get_placements_by_year(req):
 
         text = f"Placement details for {year}:\n"
         for p in data:
-            text += f"- {p.get('company')} | {p.get('package')} LPA\n"
+            text += f"-companies: {p.get('companies')} |total offers: {p.get('total_offers')} \n"
 
         return jsonify({"fulfillmentText": text})
 
