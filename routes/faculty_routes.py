@@ -68,22 +68,28 @@ def df_get_all_faculties():
         return jsonify({"fulfillmentText": "Unable to fetch faculty details at the moment."})
 
 # ✅ Get all Faculty Contacts
-def df_get_faculty_contacts():
+def df_get_faculty_contacts(req):
     try:
-        from services.db_service import get_faculty_contacts
-        contacts = get_faculty_contacts()
+        db = get_db()
+        params = req["queryResult"]["parameters"]
+        name = params.get("faculty")
 
-        if not contacts:
-            return jsonify({"fulfillmentText": "No faculty contacts available."})
-
-        text = "Faculty Contacts:\n"
-        for c in contacts:
-            text += f"- {c['name']} ({c['department']}) – {c['email']}\n"
+        if not name:
+            return jsonify({"fulfillmentText": "Please specify the faculty member's name."})
+        
+        faculty = db.faculty.find_one(
+         {"Name": name},
+         {"_id": 0})
+        
+        if not faculty:
+            return jsonify({"fulfillmentText": "Faculty member not found."})
+        text = "Faculty Contact:\n"
+        text += f"- {faculty['Name']} ({faculty['Department']}) – {faculty['Email']}\n"
 
         return jsonify({"fulfillmentText": text})
 
     except Exception:
-        return jsonify({"fulfillmentText": "Unable to fetch faculty contacts."})
+        return jsonify({"fulfillmentText": "Unable to fetch faculty contact."})
 
     
 # Get faculties by department

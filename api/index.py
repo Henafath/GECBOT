@@ -44,8 +44,6 @@ def webhook():
     elif intent == "GetPlacementsByYearIntent":
         return df_get_placements_by_year(req)
 
-    elif intent == "GetContactIntent":
-        return df_get_contact()
 
     elif intent == "Default Fallback Intent":
        
