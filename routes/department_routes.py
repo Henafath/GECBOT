@@ -67,8 +67,10 @@ def get_department(req):
         if not name:
             return jsonify({"fulfillmentText": "Please specify the department name."})
 
-        department = db.departments.find_one({"branch": name}, {"_id": 0})
-
+        department = db.departments.find_one(
+         {"branch": name},
+         {"_id": 0})
+            
         if not department:
             return jsonify({"fulfillmentText": "Department not found."})
 
