@@ -10,16 +10,23 @@ def fetch_ug_programs():
 
         if not programs:
             return jsonify({"fulfillmentText": "No UG programs found."})
-
-        text = "UG Programs offered at GEC Thrissur:\n"
-        for p in programs:
-            text += f"- {p.get('course')}\n"
-
-        return jsonify({"fulfillmentText": text})
+        formatted_programs = "<br>".join([f"• {p['course']} (Intake: {p['intake']})" for p in programs])
+       
+        responses = [
+    "Here are the PG programs available:",
+    "You can explore the following postgraduate courses:",
+    "These are the M.Tech programs offered:"
+]
+        intro = random.choice(responses)
+        result= jsonify({
+    "fulfillmentText": f"{intro}<br><br>{formatted_programs}<br><br>Let me know if you need details about any specific course!"
+})
+        return result
 
     except Exception:
-        return jsonify({"fulfillmentText": "Unable to fetch UG programs at the moment."})
-
+        return jsonify({
+    "fulfillmentText": "Hmm, I’m not completely sure about that yet 🤔. But I’ll learn it soon! Meanwhile, you can try asking about courses, faculty, or placements."
+})
 
 # ✅ Get all PG Programs
 def fetch_pg_programs():
@@ -28,19 +35,16 @@ def fetch_pg_programs():
 
         if not programs:
             return jsonify({"fulfillmentText": "No PG programs found."})
-        formatted_programs = "\n".join([f"• {p['course']} (Intake: {p['intake']})" for p in programs])
-        print("Formatted PG Programs:\n", formatted_programs)
+        formatted_programs = "<br>".join([f"• {p['course']} (Intake: {p['intake']})" for p in programs])
         responses = [
     "Here are the PG programs available:",
     "You can explore the following postgraduate courses:",
     "These are the M.Tech programs offered:"
 ]
         intro = random.choice(responses)
-        print("Selected intro:", intro)
         result= jsonify({
-    "fulfillmentText": f"{intro}\n\n{formatted_programs}\n\nLet me know if you need details about any specific course!"
+    "fulfillmentText": f"{intro}<br><br>{formatted_programs}<br><br>Let me know if you need details about any specific course!"
 })
-        print(result)
         return result
 
     except Exception:
@@ -57,12 +61,18 @@ def fetch_departments():
 
         if not departments:
             return jsonify({"fulfillmentText": "No departments found."})
+        responses = [
+    "Here are all the departments available at gec thrissur:",
+    "The following departments are available:",
+    "These are the departments in gec thrissur:"
+]
+        intro = random.choice(responses)
+        formatted_departments = "<br>".join([f"• {d.get('branch')}" for d in departments])
+        result= jsonify({
+    "fulfillmentText": f"{intro}<br><br>{formatted_departments}<br><br>Let me know if you need details about any specific department!"
+})
 
-        text = "Departments at GEC Thrissur:\n"
-        for d in departments:
-            text += f"- {d.get('branch')}\n"
-
-        return jsonify({"fulfillmentText": text})
+        return result
 
     except Exception:
         return jsonify({"fulfillmentText": "Unable to fetch departments."})

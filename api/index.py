@@ -22,9 +22,7 @@ def webhook():
         return fetch_pg_programs()
         
     elif intent == "GetAllDepartmentsIntent":
-        print("STEP 3: Enter depts intent")
         result= fetch_departments()
-        print("STEP 4: dept data fetched")
         return result
     elif intent == "GetDepartmentInfoIntent":
         return get_department(req)
