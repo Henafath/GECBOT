@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from services.db_service import get_ug_programs, get_pg_programs, get_db
-
+import random
 department_bp = Blueprint("department_bp", __name__)
 
 # ✅ Get all UG Programs
@@ -28,15 +28,21 @@ def fetch_pg_programs():
 
         if not programs:
             return jsonify({"fulfillmentText": "No PG programs found."})
-
-        text = "PG Programs offered at GEC Thrissur:\n"
-        for p in programs:
-            text += f"- {p.get('course')}\n"
-
-        return jsonify({"fulfillmentText": text})
+        formatted_programs = "\n".join([f"• {p['name']} (Intake: {p['intake']})" for p in programs])
+        responses = [
+    "Here are the PG programs available:",
+    "You can explore the following postgraduate courses:",
+    "These are the M.Tech programs offered:"
+]
+        intro = random.choice(responses)
+        return jsonify({
+    "fulfillmentText": f"\n\n{formatted_programs}\n\nLet me know if you need details about any specific course!"
+})
 
     except Exception:
-        return jsonify({"fulfillmentText": "Unable to fetch PG programs at the moment."})
+        return jsonify({
+    "fulfillmentText": "Hmm, I’m not completely sure about that yet 🤔. But I’ll learn it soon! Meanwhile, you can try asking about courses, faculty, or placements."
+})
 
 
 # ✅ Get all Departments (with UG + PG Programs)
