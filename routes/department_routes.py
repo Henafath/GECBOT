@@ -29,12 +29,14 @@ def fetch_pg_programs():
         if not programs:
             return jsonify({"fulfillmentText": "No PG programs found."})
         formatted_programs = "\n".join([f"• {p['name']} (Intake: {p['intake']})" for p in programs])
+        print("Formatted PG Programs:\n", formatted_programs)
         responses = [
     "Here are the PG programs available:",
     "You can explore the following postgraduate courses:",
     "These are the M.Tech programs offered:"
 ]
         intro = random.choice(responses)
+        print("Selected intro:", intro)
         result= jsonify({
     "fulfillmentText": f"{intro}\n\n{formatted_programs}\n\nLet me know if you need details about any specific course!"
 })
