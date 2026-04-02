@@ -35,9 +35,11 @@ def fetch_pg_programs():
     "These are the M.Tech programs offered:"
 ]
         intro = random.choice(responses)
-        return jsonify({
-    "fulfillmentText": f"\n\n{formatted_programs}\n\nLet me know if you need details about any specific course!"
+        result= jsonify({
+    "fulfillmentText": f"{intro}\n\n{formatted_programs}\n\nLet me know if you need details about any specific course!"
 })
+        print(result)
+        return result
 
     except Exception:
         return jsonify({
