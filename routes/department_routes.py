@@ -28,7 +28,7 @@ def fetch_pg_programs():
 
         if not programs:
             return jsonify({"fulfillmentText": "No PG programs found."})
-        formatted_programs = "\n".join([f"• {p['name']} (Intake: {p['intake']})" for p in programs])
+        formatted_programs = "\n".join([f"• {p['course']} (Intake: {p['intake']})" for p in programs])
         print("Formatted PG Programs:\n", formatted_programs)
         responses = [
     "Here are the PG programs available:",
