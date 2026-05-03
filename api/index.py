@@ -1,6 +1,6 @@
 from flask import jsonify, request
 from app import create_app
-from routes.department_routes import fetch_ug_programs, fetch_pg_programs, fetch_departments, get_department, compare_departments,get_hod
+from routes.department_routes import fetch_ug_programs, fetch_pg_programs, fetch_departments, get_department, compare_departments,get_hod, get_program_intake
 from routes.faculty_routes import df_get_all_faculties, df_get_faculty_contacts, df_get_faculty_by_department
 from routes.placement_routes import df_get_all_placements, df_get_placements_by_year
 from routes.contact_routes import df_get_contact
@@ -47,6 +47,9 @@ def webhook():
     
     elif intent == "GetHODIntent":
         return get_hod(req)
+    
+    elif intent == "GetProgramIntakeIntent":
+        return get_program_intake(req)
     elif intent == "Default Fallback Intent":
        
        from ml.predict import predict_answer
