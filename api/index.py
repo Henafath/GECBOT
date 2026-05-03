@@ -31,7 +31,7 @@ def webhook():
         return df_get_all_faculties()
 
     elif intent == "GetFacultyContactsIntent":
-        return df_get_faculty_contacts()
+        return df_get_faculty_contacts(req)
 
     elif intent == "GetFacultyByDepartmentIntent":
         return df_get_faculty_by_department(req)
