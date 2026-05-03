@@ -13,13 +13,13 @@ def fetch_ug_programs():
         formatted_programs = "  ".join([f"• {p['course']} (Intake: {p['intake']})" for p in programs])
        
         responses = [
-    "Here are the PG programs available:",
-    "You can explore the following postgraduate courses:",
-    "These are the M.Tech programs offered:"
+    "Here are the UG programs available:",
+    "You can explore the following undergraduate courses:",
+    "These are the B.Tech programs offered:"
 ]
         intro = random.choice(responses)
         result= jsonify({
-    "fulfillmentText": f"{intro}         {formatted_programs}.Let me know if you need details about any specific course!"
+    "fulfillmentText": f"{intro}         {formatted_programs}"
 })
         return result
 
@@ -43,7 +43,7 @@ def fetch_pg_programs():
 ]
         intro = random.choice(responses)
         result= jsonify({
-    "fulfillmentText": f"{intro}  {formatted_programs}.  Let me know if you need details about any specific course!"
+    "fulfillmentText": f"{intro}  {formatted_programs}."
 })
         return result
 
@@ -93,7 +93,7 @@ def fetch_departments():
         ]
 
         return jsonify({
-            "fulfillmentText": f"{intro}\n\n{formatted_departments}\n\nTotal Departments: {count}\n\nYou can ask about any department for more details."
+            "fulfillmentText": f"{intro}\n\n{formatted_departments}\n\nTotal Departments: {count}.\n\nYou can ask about any department for more details."
         })
 
     except Exception as e:
@@ -126,8 +126,8 @@ def get_department(req):
         text = (
             f"Department: {department.get('branch')}\n"
             f"HOD: {department.get('hod')}\n"
-            f"UG Programs: {', '.join(formatted_ugprograms)}\n"
-            f"PG Programs: {', '.join(formatted_pgprograms)}\n"
+            f"UG Programs: {formatted_ugprograms}\n"
+            f"PG Programs: {formatted_pgprograms}\n"
             f"Contact: {department.get('email')}"
         )
 
