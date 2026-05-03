@@ -200,4 +200,44 @@ def compare_departments(req):
         return jsonify({
             "fulfillmentText": "Unable to compare departments right now."
         })
+    
+def get_hod(req):
+    try:
+        db = get_db()
+
+        params = req["queryResult"]["parameters"]
+        dept_name = params.get("department")
+
+        if not dept_name:
+            return jsonify({
+                "fulfillmentText": "Please mention the department."
+            })
+
+
+        # Flexible search (case-insensitive)
+        department = db.departments.find_one({
+            "branch": {"$regex": dept_name, "$options": "i"}
+        })
+
+        if not department:
+            return jsonify({
+                "fulfillmentText": "I couldn't find that department."
+            })
+
+        hod = department.get("hod")
+
+        if not hod:
+            return jsonify({
+                "fulfillmentText": f"HOD information for {department.get('branch')} is not available."
+            })
+
+        return jsonify({
+            "fulfillmentText": f"The HOD of {department.get('branch')} is {hod}."
+        })
+
+    except Exception as e:
+        print(e)
+        return jsonify({
+            "fulfillmentText": "Unable to fetch HOD details right now."
+        })
 
