@@ -92,7 +92,7 @@ def fetch_departments():
             {"title": "Placements"}
         ]
 
-         return jsonify({
+        return jsonify({
             "fulfillmentText": f"{intro}\n\n{formatted_departments}\n\nTotal Departments: {count}\n\nYou can ask about any department for more details."
         })
 
