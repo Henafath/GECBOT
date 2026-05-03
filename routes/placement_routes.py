@@ -69,7 +69,15 @@ def df_get_placements_by_year(req):
 
         text = f"Placement details for {year}:\n"
         for p in data:
-            text += f"-companies: {p.get('companies')} |total offers: {p.get('total_offers')} \n"
+
+            companies = p.get('companies', [])
+
+    # Convert list to readable string
+            if isinstance(companies, list):
+             companies_str = ", ".join(companies)
+            else:
+             companies_str = str(companies)
+        text += f"-companies: {companies_str} |total offers: {p.get('total_offers')} \n"
 
         return jsonify({"fulfillmentText": text})
 
