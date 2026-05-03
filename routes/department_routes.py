@@ -241,3 +241,59 @@ def get_hod(req):
             "fulfillmentText": "Unable to fetch HOD details right now."
         })
 
+def get_program_intake(req):
+    try:
+        db = get_db()
+        params = req["queryResult"]["parameters"]
+
+        dept_name = params.get("department")
+
+        if not dept_name:
+            return jsonify({
+                "fulfillmentText": "Please specify the department."
+            })
+
+
+        # Fetch department
+        department = db.departments.find_one({
+            "branch": {"$regex": dept_name, "$options": "i"}
+        })
+
+        if not department:
+            return jsonify({
+                "fulfillmentText": "I couldn't find that department."
+            })
+
+        # UG Programs
+        ug_programs = department.get("ug programs", [])
+        ug_list = [
+            f"• {p.get('course')} (Intake: {p.get('intake', 'N/A')})"
+            for p in ug_programs if p.get("course")
+        ]
+
+        # PG Programs
+        pg_programs = department.get("pg programs", [])
+        pg_list = [
+            f"• {p.get('course')} (Intake: {p.get('intake', 'N/A')})"
+            for p in pg_programs if p.get("course")
+        ]
+
+        text = f"📊 Intake details for {department.get('branch')}:\n\n"
+
+        if ug_list:
+            text += "🎓 UG Programs:\n" + "\n".join(ug_list) + "\n\n"
+        else:
+            text += "🎓 UG Programs: Not available\n\n"
+
+        if pg_list:
+            text += "🎓 PG Programs:\n" + "\n".join(pg_list)
+        else:
+            text += "🎓 PG Programs: Not available"
+
+        return jsonify({"fulfillmentText": text})
+
+    except Exception as e:
+        print(e)
+        return jsonify({
+            "fulfillmentText": "Unable to fetch intake details right now."
+        })
