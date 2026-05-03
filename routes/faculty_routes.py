@@ -84,7 +84,7 @@ def df_get_faculty_contacts(req):
         if not faculty:
             return jsonify({"fulfillmentText": "Faculty member not found."})
         text = "Faculty Contact:\n"
-        text += f"- {faculty['Name']} ({faculty['Department']}) – {faculty['Email']}\n"
+        text += f"- {faculty['Name']} ({faculty['Department']}) – {faculty['Email']} ({faculty['PhoneNumber']})\n"
 
         return jsonify({"fulfillmentText": text})
 

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Information</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <h2>GECBot</h2>
+        <ul>
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/all_questions">All Questions</a></li>
+            <li><a href="/analytics">Analytics</a></li>
+            <li><a href="/add_info">Add Info</a></li>
+            <li><a href="#" onclick="confirmLogout(); return false;">Logout</a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <header class="header">
+            <h1>Add Information ➕</h1>
+            <p>Insert new data like department, faculty, announcements</p>
+        </header>
+
+        <div class="form-box">
+
+            <form method="POST">
+
+                <!-- TYPE -->
+                <label>Type of Information</label>
+                <select name="type" required>
+                    <option value="">Select Type</option>
+                    <option value="Department">Department</option>
+                    <option value="Faculty">Faculty</option>
+                    <option value="Announcement">Announcement</option>
+                </select>
+
+                <!-- TITLE -->
+                <label>Title</label>
+                <input type="text" name="title" placeholder="Enter title..." required>
+
+                <!-- DESCRIPTION -->
+                <label>Description</label>
+                <textarea name="description" placeholder="Enter details..." required></textarea>
+
+                <!-- BUTTON -->
+                <button type="submit" class="submit-btn">Add Information</button>
+
+            </form>
+
+        </div>
+
+    </main>
+
+</div>
+
+<script>
+function confirmLogout() {
+    let confirmAction = confirm("Are you sure you want to logout?");
+    if (confirmAction) {
+        window.location.href = "/logout";
+    }
+}
+</script>
+
+</body>
+</html>

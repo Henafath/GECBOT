@@ -1,29 +1,84 @@
-<h1>All Questions</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Question</th>
-      <th>Status</th>
-      <th>Date</th>
-    </tr>
-  </thead>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Questions</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
 
-  <tbody>
-    {% for q in questions %}
-    <tr>
-      <td>{{ loop.index }}</td>
-      <td>{{ q.question }}</td>
-      <td>
-        {% if q.trained %}
-          <span class="badge-success">Answered</span>
-        {% else %}
-          <span class="badge">Pending</span>
-        {% endif %}
-      </td>
-      <td>{{ q.created_at.strftime("%d %b %Y") if q.created_at else "N/A" }}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+<div class="dashboard-container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <h2>GECBot</h2>
+        <ul>
+            <li><a href="{{ url_for('admin_bp.dashboard') }}">Dashboard</a></li>
+            <li><a href="{{ url_for('admin_bp.all_questions') }}">All Questions</a></li>
+            <li><a href="{{ url_for('admin_bp.analytics') }}">Analytics</a></li>
+            <li><a href="{{ url_for('admin_bp.logout') }}">Logout</a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <header class="header">
+            <h1>All Questions</h1>
+            <p>Manage and review all user queries 📊</p>
+        </header>
+
+        <section class="table-section">
+
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Question</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+
+              <tbody>
+
+                
+                 {% for q in questions %}
+                 <tr>
+                      <td>{{ loop.index }}</td>
+                      <td>{{ q.question }}</td>
+                      <td>
+                         {% if q.trained %}
+                         <span class="badge-success">Answered</span>
+                         {% else %}
+                         <span class="badge">Pending</span>
+                         <a href="{{ url_for('admin_bp.answer') }}" class="answer-btn">Answer</a>
+
+                         {% endif %}
+                      </td>
+                      <td>{{ q.created_at.strftime("%d %b %Y") if q.created_at else "N/A" }}</td>
+                 </tr>
+                 {% endfor %}
+              </tbody>
+
+            </table>
+
+        </section>
+
+    </main>
+
+</div>
+<script>
+
+function confirmLogout() {
+    let confirmAction = confirm("Are you sure you want to logout?");
+    
+    if (confirmAction) {
+        window.location.href = "/logout";
+    }
+}
+</script>
+
+</body>
+</html>

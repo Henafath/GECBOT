@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Answer Question</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+<div class="dashboard-container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <h2>GECBot</h2>
+        <ul>
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/all_questions">All Questions</a></li>
+            <li><a href="/analytics">Analytics</a></li>
+            <li><a href="#" onclick="confirmLogout(); return false;">Logout</a></li>
+        </ul>
+    </aside>
+
+    <!-- Main -->
+    <main class="main-content">
+
+        <header class="header">
+            <h1>Answer Question ✍️</h1>
+        </header>
+
+        <div class="answer-box">
+
+            <form method="POST" action="/submit_answer">
+    
+              <h3>Question ID: {{ id }}</h3>
+              <p><b>Question:</b> {{ question }}</p>
+
+                 <!-- Hidden field to send ID -->
+                 <input type="hidden" name="id" value="{{ id }}">
+
+              <textarea name="answer" placeholder="Type your answer here..." required></textarea>
+
+              <button type="submit" class="submit-btn">Submit Answer</button>
+
+            </form>
+
+        </div>
+
+    </main>
+
+</div>
+
+<script>
+function confirmLogout() {
+    let confirmAction = confirm("Are you sure you want to logout?");
+    if (confirmAction) {
+        window.location.href = "/logout";
+    }
+}
+</script>
+
+</body>
+</html>

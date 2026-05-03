@@ -26,6 +26,10 @@ def login():
    
     return render_template("login.html")
 
+@admin_bp.route('/answer')
+def answer():
+    return render_template('answer.html')
+
 @admin_bp.route("/dashboard")
 def dashboard():
     if not session.get("admin"):

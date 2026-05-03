@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Questions</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <h2>GECBot</h2>
+        <ul>
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/all_questions">All Questions</a></li>
+            <li><a href="/analytics">Analytics</a></li>
+            <li><a href="/add_info">Add Info</a></li>
+            <li><a href="#" onclick="confirmLogout(); return false;">Logout</a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <header class="header">
+            <h1>All Questions</h1>
+            <p>Manage and review all user queries 📊</p>
+        </header>
+
+        <section class="table-section">
+
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Question</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th>Action</th> <!-- ✅ NEW COLUMN -->
+                </tr>
+
+                <!-- Answered Question -->
+                <tr>
+                    <td>1</td>
+                    <td>Is Civil Engineering available?</td>
+                    <td><span class="status answered">Answered</span></td>
+                    <td>2026-04-01</td>
+                    <td>-</td> <!-- No button -->
+                </tr>
+
+                <!-- Pending Question -->
+                <tr>
+                    <td>2</td>
+                    <td>What is placement rate?</td>
+                    <td><span class="status pending">Pending</span></td>
+                    <td>2026-04-01</td>
+
+                    <!-- ✅ ANSWER BUTTON -->
+                    <td>
+                        <a href="/answer/2" class="answer-btn">Answer</a>
+                    </td>
+                </tr>
+
+            </table>
+
+        </section>
+
+    </main>
+
+</div>
+
+<!-- Logout Script -->
+<script>
+function confirmLogout() {
+    let confirmAction = confirm("Are you sure you want to logout?");
+    
+    if (confirmAction) {
+        window.location.href = "/logout";
+    }
+}
+</script>
+
+</body>
+</html>
