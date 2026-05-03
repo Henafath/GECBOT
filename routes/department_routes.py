@@ -92,7 +92,7 @@ def fetch_departments():
             {"title": "Placements"}
         ]
 
-        return jsonify({
+        result = jsonify({
             "fulfillmentText": f"{intro}\n\n{formatted_departments}\n\nTotal Departments: {count}\n\nYou can ask about any department for more details!",
             "fulfillmentMessages": [
                 {
@@ -109,6 +109,8 @@ def fetch_departments():
                 }
             ]
         }), 200
+        print(result)
+        return result
 
     except Exception as e:
         print(e)
