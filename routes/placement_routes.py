@@ -37,7 +37,16 @@ def df_get_all_placements():
 
         text = "Placement Statistics at GEC Thrissur:\n"
         for p in data:
-            text += f"- year: {p.get('year')} | companies: {p.get('companies')} | total offers: {p.get('total_offers')}\n"
+
+         companies = p.get('companies', [])
+
+    # Convert list to readable string
+         if isinstance(companies, list):
+          companies_str = ", ".join(companies)
+         else:
+          companies_str = str(companies)
+         
+        text += f"- year: {p.get('year')} | companies: {companies_str} | total offers: {p.get('total_offers')}\n"
 
         return jsonify({"fulfillmentText": text})
 

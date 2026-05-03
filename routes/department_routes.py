@@ -124,10 +124,10 @@ def get_department(req):
         formatted_pgprograms = "  ".join([f"• {p['course']} (Intake: {p['intake']})" for p in department.get("pg programs", [])])
 
         text = (
-            f"Department: {department.get('branch')}\n"
-            f"HOD: {department.get('hod')}\n"
+            f"Department: {department.get('branch')},\n"
+            f"HOD: {department.get('hod')},\n"
             f"UG Programs: {formatted_ugprograms}\n"
-            f"PG Programs: {formatted_pgprograms}\n"
+            f"PG Programs: {formatted_pgprograms},\n"
             f"Contact: {department.get('email')}"
         )
 
