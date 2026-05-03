@@ -65,9 +65,9 @@ def df_get_placements_by_year(req):
         data = get_placements(int(year))
 
         if not data:
-            return jsonify({"fulfillmentText": f"No placement data found for {year}."})
+            return jsonify({"fulfillmentText": f"No placement data found for {int(year)}."})
 
-        text = f"Placement details for {year}:\n"
+        text = f"Placement details for {int(year)}:\n"
         for p in data:
 
             companies = p.get('companies', [])
@@ -77,7 +77,7 @@ def df_get_placements_by_year(req):
              companies_str = ", ".join(companies)
             else:
              companies_str = str(companies)
-        text += f"-companies: {companies_str} |total offers: {p.get('total_offers')} \n"
+        text += f"-companies: {companies_str}. Total offers: {p.get('total_offers')} \n"
 
         return jsonify({"fulfillmentText": text})
 
