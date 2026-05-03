@@ -170,11 +170,11 @@ def compare_departments(req):
             })
 
         # Extract data
-        ug1 = [p.get("course") for p in dept1.get("ug_programs", [])]
-        ug2 = [p.get("course") for p in dept2.get("ug_programs", [])]
+        ug1 = [p.get("course") for p in dept1.get("ug programs", [])]
+        ug2 = [p.get("course") for p in dept2.get("ug programs", [])]
 
-        pg1 = [p.get("course") for p in dept1.get("pg_programs", [])]
-        pg2 = [p.get("course") for p in dept2.get("pg_programs", [])]
+        pg1 = [p.get("course") for p in dept1.get("pg programs", [])]
+        pg2 = [p.get("course") for p in dept2.get("pg programs", [])]
 
         # Format response
         text = (
