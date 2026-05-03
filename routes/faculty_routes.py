@@ -72,7 +72,7 @@ def df_get_faculty_contacts(req):
     try:
         db = get_db()
         params = req["queryResult"]["parameters"]
-        name = params.get("person")
+        name = params.get("name", "").strip()
 
         if not name:
             return jsonify({"fulfillmentText": "Please specify the faculty member's name."})
