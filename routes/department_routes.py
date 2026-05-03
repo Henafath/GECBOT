@@ -74,13 +74,13 @@ def fetch_departments():
         ]
 
         intro = random.choice(responses)
-
+        print(intro)
         # Extract department names
         dept_names = [d.get("branch") for d in departments if d.get("branch")]
 
         # Format list nicely
         formatted_departments = "\n".join([f"• {name}" for name in dept_names])
-
+        print(formatted_departments)
         # Count
         count = len(dept_names)
 
