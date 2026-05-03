@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 from services.db_service import get_ug_programs, get_pg_programs, get_db
 import random
+import re
 department_bp = Blueprint("department_bp", __name__)
 
 # ✅ Get all UG Programs
@@ -135,4 +136,68 @@ def get_department(req):
 
     except Exception:
         return jsonify({"fulfillmentText": "Unable to fetch department details."})
+
+
+def get_department(db, name):
+    return db.departments.find_one({
+        "branch": {"$regex": f"^{re.escape(name)}", "$options": "i"}
+    })
+
+def compare_departments(req):
+    try:
+        db = get_db()
+
+        params = req["queryResult"]["parameters"]
+
+        dept_list = params.get("departments", [])
+
+        # Validate
+        if len(dept_list) < 2:
+            return jsonify({
+                "fulfillmentText": "Please provide two departments to compare."
+            })
+
+        # Take first two
+        dept1_name = dept_list[0]
+        dept2_name = dept_list[1]
+
+        dept1 = get_department(db, dept1_name)
+        dept2 = get_department(db, dept2_name)
+
+        if not dept1 or not dept2:
+            return jsonify({
+                "fulfillmentText": "I couldn't find one or both departments."
+            })
+
+        # Extract data
+        ug1 = [p.get("course") for p in dept1.get("ug_programs", [])]
+        ug2 = [p.get("course") for p in dept2.get("ug_programs", [])]
+
+        pg1 = [p.get("course") for p in dept1.get("pg_programs", [])]
+        pg2 = [p.get("course") for p in dept2.get("pg_programs", [])]
+
+        # Format response
+        text = (
+            f"📊 Comparison between {dept1.get('branch')} and {dept2.get('branch')}:\n\n"
+
+            f"🔹 {dept1.get('branch')}\n"
+            f"HOD: {dept1.get('hod')}\n"
+            f"UG: {', '.join(ug1) if ug1 else 'N/A'}\n"
+            f"PG: {', '.join(pg1) if pg1 else 'N/A'}\n\n"
+
+            f"🔹 {dept2.get('branch')}\n"
+            f"HOD: {dept2.get('hod')}\n"
+            f"UG: {', '.join(ug2) if ug2 else 'N/A'}\n"
+            f"PG: {', '.join(pg2) if pg2 else 'N/A'}\n\n"
+
+            f"You can ask more details about any department!"
+        )
+
+        return jsonify({"fulfillmentText": text})
+
+    except Exception as e:
+        print(e)
+        return jsonify({
+            "fulfillmentText": "Unable to compare departments right now."
+        })
 
