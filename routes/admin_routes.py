@@ -1,8 +1,10 @@
+from bson import ObjectId
 from flask import Blueprint, jsonify, render_template, request, redirect, session
 from services.db_service import get_db
 from ml.train_model import train
 import os
 from flask import url_for
+import datetime
 
 admin_bp = Blueprint("admin_bp", __name__)
 db=get_db()
@@ -26,9 +28,41 @@ def login():
    
     return render_template("login.html")
 
-@admin_bp.route('/answer')
-def answer():
-    return render_template('answer.html')
+@admin_bp.route("/submit_answer", methods=["POST"])
+def submit_answer():
+    db = get_db()
+
+    question_id = request.form.get("id")
+    answer = request.form.get("answer")
+
+    if not answer:
+        return "Answer cannot be empty"
+
+    db.unanswered_queries.update_one(
+        {"_id": ObjectId(question_id)},
+        {
+            "$set": {
+                "answer": answer,
+                "trained": True
+            }
+        }
+    )
+
+    return redirect(url_for("admin_bp.all_questions"))
+@admin_bp.route("/answer_question/<id>")
+def answer_question(id):
+        db = get_db()
+
+        data = db.unanswered_queries.find_one({"_id": ObjectId(id)})
+
+        if not data:
+            return "Question not found"
+
+        return render_template(
+            "answer.html",
+            id=str(data["_id"]),
+            question=data["question"]
+        )
 
 @admin_bp.route("/dashboard")
 def dashboard():
@@ -111,7 +145,14 @@ def analytics():
                 },
                 "count": {"$sum": 1}
             }
+        },
+    {
+        "$sort": {
+            "_id.year": 1,
+            "_id.month": 1,
+            "_id.day": 1
         }
+    }
     ]
 
     daily_stats = list(db.unanswered_queries.aggregate(pipeline))
@@ -123,3 +164,64 @@ def analytics():
         unanswered=unanswered,
         daily_stats=daily_stats
     )
+
+# Department Program (UG/PG)
+@admin_bp.route("/add_department_program", methods=["POST"])
+def add_department_program():
+    db = get_db()
+
+    dept = request.form.get("department")
+    level = request.form.get("program_level")
+    course = request.form.get("course")
+    intake = int(request.form.get("intake") or 0)
+
+    program = {"course": course, "intake": intake}
+
+    key = "ug programs" if level == "ug" else "pg programs"
+
+    db.departments.update_one(
+        {"branch": {"$regex": dept, "$options": "i"}},
+        {"$addToSet": {key: program}}  # avoids duplicates
+    )
+
+    return render_template("add_info.html", message="Program added successfully")
+
+
+# Faculty
+@admin_bp.route("/add_faculty", methods=["POST"])
+def add_faculty():
+    db = get_db()
+
+    db.faculty.insert_one({
+        "Name": request.form.get("faculty_name"),
+        "Department": request.form.get("department"),
+        "Designation": request.form.get("designation"),
+        "Qualification": request.form.get("qualification"),
+        "Specialisation": request.form.get("specialisation"),
+        "Email": request.form.get("email"),
+        "PhoneNumber": request.form.get("phone"),
+        "Experience": request.form.get("experience"),
+        "Publications": int(request.form.get("publications") or 0),
+        "Projects": int(request.form.get("projects") or 0)
+    })
+
+    return render_template("add_info.html", message="Faculty added successfully")
+
+
+# Placement
+@admin_bp.route("/add_placement", methods=["POST"])
+def add_placement():
+    db = get_db()
+
+    companies = request.form.get("companies", "")
+    db.placements.insert_one({
+        "year": int(request.form.get("year")),
+        "companies": [c.strip() for c in companies.split(",") if c.strip()],
+        "created_at": datetime.utcnow()
+    })
+
+    return render_template("add_info.html", message="Placement added successfully")
+
+@admin_bp.route("/add_info")
+def add_info():
+    return render_template("add_info.html")

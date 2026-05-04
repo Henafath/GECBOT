@@ -13,25 +13,30 @@
     <aside class="sidebar">
         <h2>GECBot</h2>
         <ul>
-            <li><a href="/dashboard">Dashboard</a></li>
-            <li><a href="/all_questions">All Questions</a></li>
-            <li><a href="/analytics">Analytics</a></li>
-            <li><a href="#" onclick="confirmLogout(); return false;">Logout</a></li>
+            <aside class="sidebar">
+        <h2>GECBot</h2>
+        <ul>
+            <li><a href="{{ url_for('admin_bp.dashboard') }}">Dashboard</a></li>
+            <li><a href="{{ url_for('admin_bp.all_questions') }}">All Questions</a></li>
+            <li><a href="{{ url_for('admin_bp.analytics') }}">Analytics</a></li>
+            <li><a href="{{ url_for('admin_bp.add_info') }}">Add Info</a></li>
+            <li><a href="{{ url_for('admin_bp.logout') }}">Logout</a></li>
+        </ul>
+    </aside>
         </ul>
     </aside>
 
     <!-- Main -->
     <main class="main-content">
-
         <header class="header">
             <h1>Answer Question ✍️</h1>
         </header>
 
         <div class="answer-box">
 
-            <form method="POST" action="/submit_answer">
+            <form method="POST" action="{{ url_for('admin_bp.submit_answer') }}">
     
-              <h3>Question ID: {{ id }}</h3>
+              
               <p><b>Question:</b> {{ question }}</p>
 
                  <!-- Hidden field to send ID -->

@@ -1,15 +1,137 @@
-<h1>Analytics</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Analytics Dashboard</title>
 
-<p>Total Questions: {{ total }}</p>
-<p>Answered: {{ answered }}</p>
-<p>Unanswered: {{ unanswered }}</p>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<h2>Daily Question Count</h2>
-<ul>
-  {% for day in daily_stats %}
-    <li>
-      {{ day._id.day }}/{{ day._id.month }}/{{ day._id.year }} :
-      {{ day.count }} questions
-    </li>
-  {% endfor %}
-</ul>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fa;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .cards {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 25%;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .card h2 {
+            margin: 10px 0;
+        }
+
+        .chart-container {
+            width: 80%;
+            margin: auto;
+            margin-top: 30px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+
+<h1>📊 Chatbot Analytics Dashboard</h1>
+
+<aside class="sidebar">
+        <h2>GECBot</h2>
+        <ul>
+            <li><a href="{{ url_for('admin_bp.dashboard') }}">Dashboard</a></li>
+            <li><a href="{{ url_for('admin_bp.all_questions') }}">All Questions</a></li>
+            <li><a href="{{ url_for('admin_bp.analytics') }}">Analytics</a></li>
+            <li><a href="{{ url_for('admin_bp.add_info') }}">Add Info</a></li>
+            <li><a href="{{ url_for('admin_bp.logout') }}">Logout</a></li>
+        </ul>
+    </aside>
+
+<!-- Cards -->
+<div class="cards">
+    <div class="card">
+        <h3>Total Questions</h3>
+        <h2>{{ total }}</h2>
+    </div>
+
+    <div class="card">
+        <h3>Answered</h3>
+        <h2 style="color: green;">{{ answered }}</h2>
+    </div>
+
+    <div class="card">
+        <h3>Unanswered</h3>
+        <h2 style="color: red;">{{ unanswered }}</h2>
+    </div>
+</div>
+
+<!-- Pie Chart -->
+<div class="chart-container" style="width: 300px; height: 400px; margin: auto;">
+    <h3>Answer Distribution</h3>
+    <canvas id="pieChart"></canvas>
+</div>
+
+<!-- Line Chart -->
+<div class="chart-container">
+    <h3>Daily Question Count</h3>
+    <canvas id="lineChart"></canvas>
+</div>
+
+<script>
+    // Pie Chart
+            new Chart(document.getElementById('pieChart'), {
+                type: 'pie',
+                data: {
+                    labels: ['Answered', 'Unanswered'],
+                    datasets: [{
+                        data: JSON.parse('{{ [answered, unanswered]|tojson }}')
+                    }]
+                }
+            });
+
+    // Prepare daily data
+    const labels = [
+        {% for day in daily_stats %}
+            "{{ day._id.day }}/{{ day._id.month }}",
+        {% endfor %}
+    ];
+
+    const values = [
+        {% for day in daily_stats %}
+            {{ day.count }},
+        {% endfor %}
+    ];
+
+    // Line Chart
+    new Chart(document.getElementById('lineChart'), {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Questions',
+                data: values,
+                fill: false
+            }]
+        }
+    });
+</script>
+
+</body>
+</html>

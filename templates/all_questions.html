@@ -16,6 +16,7 @@
             <li><a href="{{ url_for('admin_bp.dashboard') }}">Dashboard</a></li>
             <li><a href="{{ url_for('admin_bp.all_questions') }}">All Questions</a></li>
             <li><a href="{{ url_for('admin_bp.analytics') }}">Analytics</a></li>
+            <li><a href="{{ url_for('admin_bp.add_info') }}">Add Info</a></li>
             <li><a href="{{ url_for('admin_bp.logout') }}">Logout</a></li>
         </ul>
     </aside>
@@ -53,7 +54,7 @@
                          <span class="badge-success">Answered</span>
                          {% else %}
                          <span class="badge">Pending</span>
-                         <a href="{{ url_for('admin_bp.answer') }}" class="answer-btn">Answer</a>
+                         <a href="{{ url_for('admin_bp.answer_question', id=q._id) }}" class="answer-btn">Answer</a>
 
                          {% endif %}
                       </td>

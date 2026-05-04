@@ -14,11 +14,11 @@
     <aside class="sidebar">
         <h2>GECBot</h2>
         <ul>
-            <li><a href="/dashboard">Dashboard</a></li>
-            <li><a href="/all_questions">All Questions</a></li>
-            <li><a href="/analytics">Analytics</a></li>
-            <li><a href="/add_info">Add Info</a></li>
-            <li><a href="#" onclick="confirmLogout(); return false;">Logout</a></li>
+            <li><a href="{{ url_for('admin_bp.dashboard') }}">Dashboard</a></li>
+            <li><a href="{{ url_for('admin_bp.all_questions') }}">All Questions</a></li>
+            <li><a href="{{ url_for('admin_bp.analytics') }}">Analytics</a></li>
+            <li><a href="{{ url_for('admin_bp.add_info') }}">Add Info</a></li>
+            <li><a href="{{ url_for('admin_bp.logout') }}">Logout</a></li>
         </ul>
     </aside>
 
@@ -32,29 +32,59 @@
 
         <div class="form-box">
 
-            <form method="POST">
+            <label>Type</label>
+<select id="typeSelect" onchange="toggleForms()">
+  <option value="">Select</option>
+  <option value="department">Department Program</option>
+  <option value="faculty">Faculty</option>
+  <option value="placement">Placement</option>
+</select>
 
-                <!-- TYPE -->
-                <label>Type of Information</label>
-                <select name="type" required>
-                    <option value="">Select Type</option>
-                    <option value="Department">Department</option>
-                    <option value="Faculty">Faculty</option>
-                    <option value="Announcement">Announcement</option>
-                </select>
+<!-- ===== Department Form ===== -->
+<form id="deptForm" method="POST" action="{{ url_for('admin_bp.add_department_program') }}" style="display:none;">
+  <h3>Department Program</h3>
 
-                <!-- TITLE -->
-                <label>Title</label>
-                <input type="text" name="title" placeholder="Enter title..." required>
+  <input type="text" name="department" placeholder="Department (CSE)" required>
 
-                <!-- DESCRIPTION -->
-                <label>Description</label>
-                <textarea name="description" placeholder="Enter details..." required></textarea>
+  <select name="program_level" required>
+    <option value="">Level</option>
+    <option value="ug">UG</option>
+    <option value="pg">PG</option>
+  </select>
 
-                <!-- BUTTON -->
-                <button type="submit" class="submit-btn">Add Information</button>
+  <input type="text" name="course" placeholder="Course Name" required>
+  <input type="number" name="intake" placeholder="Intake" required>
 
-            </form>
+  <button type="submit">Add Program</button>
+</form>
+
+<!-- ===== Faculty Form ===== -->
+<form id="facultyForm" method="POST" action="{{ url_for('admin_bp.add_faculty') }}" style="display:none;">
+  <h3>Faculty</h3>
+
+  <input type="text" name="department" placeholder="Department" required>
+  <input type="text" name="faculty_name" placeholder="Name" required>
+  <input type="text" name="designation" placeholder="Designation">
+  <input type="text" name="qualification" placeholder="Qualification">
+  <input type="text" name="specialisation" placeholder="Specialisation">
+  <input type="email" name="email" placeholder="Email">
+  <input type="text" name="phone" placeholder="Phone">
+  <input type="text" name="experience" placeholder="Experience">
+  <input type="number" name="publications" placeholder="Publications">
+  <input type="number" name="projects" placeholder="Projects">
+
+  <button type="submit">Add Faculty</button>
+</form>
+
+<!-- ===== Placement Form ===== -->
+<form id="placementForm" method="POST" action="{{ url_for('admin_bp.add_placement') }}" style="display:none;">
+  <h3>Placement</h3>
+
+  <input type="number" name="year" placeholder="Year" required>
+  <input type="text" name="companies" placeholder="Companies (comma separated)" required>
+
+  <button type="submit">Add Placement</button>
+</form>
 
         </div>
 
@@ -63,6 +93,14 @@
 </div>
 
 <script>
+function toggleForms() {
+  const type = document.getElementById("typeSelect").value;
+
+  document.getElementById("deptForm").style.display = (type === "department") ? "block" : "none";
+  document.getElementById("facultyForm").style.display = (type === "faculty") ? "block" : "none";
+  document.getElementById("placementForm").style.display = (type === "placement") ? "block" : "none";
+}
+
 function confirmLogout() {
     let confirmAction = confirm("Are you sure you want to logout?");
     if (confirmAction) {
