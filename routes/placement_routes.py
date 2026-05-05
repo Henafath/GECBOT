@@ -46,7 +46,7 @@ def df_get_all_placements():
          else:
           companies_str = str(companies)
          
-          text += f"- year: {p.get('year')} | companies: {companies_str} | total offers: {p.get('total_offers')}\n"
+         text += f"- year: {p.get('year')} | companies: {companies_str} | total offers: {p.get('total_offers')}\n"
 
         return jsonify({"fulfillmentText": text})
 
