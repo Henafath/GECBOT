@@ -158,12 +158,12 @@ def compare_departments(req):
         dept1_name = dept_list[0]
         dept2_name = dept_list[1]
 
-        dept1 = db.departments.find_one({
-        "branch": {"$regex": f"^{re.escape(dept1_name)}", "$options": "i"}
-        })
-        dept2 = db.departments.find_one({
-        "branch": {"$regex": f"^{re.escape(dept2_name)}", "$options": "i"}
-        })
+        dept1 = db.departments.find_one(
+         {"branch": dept1_name},
+         {"_id": 0})
+        dept2 = db.departments.find_one(
+         {"branch": dept2_name},
+         {"_id": 0})
 
         if not dept1 or not dept2:
             return jsonify({
