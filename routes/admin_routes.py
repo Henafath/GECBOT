@@ -30,6 +30,8 @@ def login():
 
 @admin_bp.route("/submit_answer", methods=["POST"])
 def submit_answer():
+    if not session.get("admin"):
+        return redirect(url_for("admin_bp.login"))
     db = get_db()
 
     question_id = request.form.get("id")
@@ -51,6 +53,8 @@ def submit_answer():
     return redirect(url_for("admin_bp.all_questions"))
 @admin_bp.route("/answer_question/<id>")
 def answer_question(id):
+        if not session.get("admin"):
+         return redirect(url_for("admin_bp.login"))
         db = get_db()
 
         data = db.unanswered_queries.find_one({"_id": ObjectId(id)})
@@ -109,6 +113,8 @@ def all_questions():
 # Save admin answers
 @admin_bp.route("/admin/answer", methods=["POST"])
 def save_answer():
+    if not session.get("admin"):
+        return redirect(url_for("admin_bp.login"))
     db = get_db()
     payload = request.get_json()
 
@@ -122,6 +128,8 @@ def save_answer():
 # Retrain ML model
 @admin_bp.route("/admin/train", methods=["POST"])
 def retrain_model():
+    if not session.get("admin"):
+        return redirect(url_for("admin_bp.login"))
     train()
     return jsonify({"message": "Model retrained successfully"})
 
@@ -168,6 +176,8 @@ def analytics():
 # Department Program (UG/PG)
 @admin_bp.route("/add_department_program", methods=["POST"])
 def add_department_program():
+    if not session.get("admin"):
+        return redirect(url_for("admin_bp.login"))
     db = get_db()
 
     dept = request.form.get("department")
@@ -190,6 +200,8 @@ def add_department_program():
 # Faculty
 @admin_bp.route("/add_faculty", methods=["POST"])
 def add_faculty():
+    if not session.get("admin"):
+        return redirect(url_for("admin_bp.login"))
     db = get_db()
 
     db.faculty.insert_one({
@@ -211,6 +223,8 @@ def add_faculty():
 # Placement
 @admin_bp.route("/add_placement", methods=["POST"])
 def add_placement():
+    if not session.get("admin"):
+        return redirect(url_for("admin_bp.login"))
     db = get_db()
 
     companies = request.form.get("companies", "")
@@ -224,4 +238,6 @@ def add_placement():
 
 @admin_bp.route("/add_info")
 def add_info():
+    if not session.get("admin"):
+        return redirect(url_for("admin_bp.login"))
     return render_template("add_info.html")

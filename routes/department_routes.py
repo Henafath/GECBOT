@@ -138,10 +138,7 @@ def get_department(req):
         return jsonify({"fulfillmentText": "Unable to fetch department details."})
 
 
-def get_department(db, name):
-    return db.departments.find_one({
-        "branch": {"$regex": f"^{re.escape(name)}", "$options": "i"}
-    })
+
 
 def compare_departments(req):
     try:
@@ -161,8 +158,12 @@ def compare_departments(req):
         dept1_name = dept_list[0]
         dept2_name = dept_list[1]
 
-        dept1 = get_department(db, dept1_name)
-        dept2 = get_department(db, dept2_name)
+        dept1 = db.departments.find_one({
+        "branch": {"$regex": f"^{re.escape(dept1_name)}", "$options": "i"}
+        })
+        dept2 = db.departments.find_one({
+        "branch": {"$regex": f"^{re.escape(dept2_name)}", "$options": "i"}
+        })
 
         if not dept1 or not dept2:
             return jsonify({
