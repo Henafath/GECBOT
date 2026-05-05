@@ -48,7 +48,7 @@ def df_get_all_placements():
          
           text += f"- year: {p.get('year')} | companies: {companies_str} | total offers: {p.get('total_offers')}\n"
 
-          return jsonify({"fulfillmentText": text})
+         return jsonify({"fulfillmentText": text})
 
     except Exception:
         return jsonify({"fulfillmentText": "Unable to fetch placement details."})
