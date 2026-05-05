@@ -49,6 +49,8 @@ def submit_answer():
             }
         }
     )
+    train()
+    
 
     return redirect(url_for("admin_bp.all_questions"))
 @admin_bp.route("/answer_question/<id>")
