@@ -6,11 +6,12 @@ from services.db_service import get_db
 db = get_db()
 
 def train():
+   try:
     data = list(db.unanswered_queries.find({"trained": True}))
 
     X = [d["question"] for d in data]
     y = [d["answer"] for d in data]
-
+    print("Fetched records:", len(data))
     if not X:
         return
 
@@ -25,3 +26,7 @@ def train():
 
     
     print("Model trained successfully!")
+   except Exception as e:
+        print("Error:", e)
+if __name__ == "__main__":
+    train()

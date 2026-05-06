@@ -51,22 +51,44 @@ def webhook():
     elif intent == "GetProgramIntakeIntent":
         return get_program_intake(req)
     elif intent == "Default Fallback Intent":
-       
-       from ml.predict import predict_answer
-       answer = predict_answer(req["queryResult"]["queryText"])
 
-       if answer:
-            return jsonify({"fulfillmentText": answer})
+     user_query = req["queryResult"]["queryText"]
 
-       db = get_db()
-       db.unanswered_queries.insert_one({
-            "question": req["queryResult"]["queryText"],
+     db = get_db()
+
+    # 🔹 Step 1: Check if already answered in DB
+     existing = db.unanswered_queries.find_one({
+        "question": {"$regex": f"^{user_query}$", "$options": "i"},
+        "answer": {"$ne": None}
+     })
+
+     if existing:
+        return jsonify({"fulfillmentText": existing["answer"]})
+
+    # 🔹 Step 2: Try ML prediction
+     from ml.predict import predict_answer
+     answer = predict_answer(user_query)
+
+     if answer:
+        return jsonify({"fulfillmentText": answer})
+
+    # 🔹 Step 3: Save as new unanswered query (avoid duplicates)
+     already_exists = db.unanswered_queries.find_one({
+        "question": {"$regex": f"^{user_query}$", "$options": "i"}
+     })
+
+     if not already_exists:
+        db.unanswered_queries.insert_one({
+            "question": user_query,
             "answer": None,
             "trained": False,
             "created_at": datetime.now(timezone.utc)
         })
 
-       return jsonify({"fulfillmentText": "I will learn this soon. Our team will update me."})
+    # 🔹 Step 4: Default response
+     return jsonify({
+        "fulfillmentText": "I will learn this soon. Our team will update me."
+     })
 
     return jsonify({"fulfillmentText": "Sorry, I didn't understand that."})
 
